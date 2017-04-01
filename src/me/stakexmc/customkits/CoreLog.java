@@ -13,7 +13,7 @@ private CustomKits plugin;
 	
 	public void info(String info)
 	  {
-		plugin.getServer().getConsoleSender().sendMessage(CoreUtils.rColor("&b[&7&lGuerraLider&b]&7 " + info + "&7"));
+		plugin.getServer().getConsoleSender().sendMessage(CoreUtils.rColor("&b[&7&lCustomKits&b]&7 " + info + "&7"));
 	  }
 	public void line(String info)
 	  {
