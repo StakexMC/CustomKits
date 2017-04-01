@@ -10,6 +10,7 @@ public class CustomKits extends JavaPlugin {
 		this.log = new CoreLog(this);
 		log.line("--------------------------------");
 		log.info("Hola bebe");
+		log.info("Pruebaaaaaaaaaaaa");
 		log.line("--------------------------------");
 	}
 }
