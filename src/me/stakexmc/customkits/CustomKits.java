@@ -1,11 +1,15 @@
 package me.stakexmc.customkits;
 
+import java.util.Arrays;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomKits extends JavaPlugin {
 	
 	private CoreLog log;
 	public CoreConfig cconfig;
+	//para cada archivo una nueva clase CoreConfig prro
+	public CoreConfig ckits;
 	public static CustomKits intance;
 	
 	public void onEnable(){
@@ -30,13 +34,13 @@ public class CustomKits extends JavaPlugin {
 			}
 			
 		}public void iniKits(){
-			cconfig = new CoreConfig(intance,"Kits");
-			if (cconfig.Exists()){
+			ckits = new CoreConfig(intance,"Kits");
+			if (ckits.Exists()){
 				configKits();
-				cconfig.load();
+				ckits.load();
 			}else{
 				configKits();
-				cconfig.create();
+				ckits.create();
 			}
 			
 		}
@@ -54,13 +58,25 @@ public class CustomKits extends JavaPlugin {
 			cconfig.add("dataStorage.password","1234");
 		}
 		//Configuracion default para el archivo Kits
+		//Trata de no usar mayuscula en los nodos internos
 		public void configKits(){	
-			cconfig.add("Survival.Name","&7Survival");
-			cconfig.add("Survival.Icon","299");
-			cconfig.add("Survival.helmet","298");
-			cconfig.add("Survival.chesplate","299");
-			cconfig.add("Survival.leggings","300");
-			cconfig.add("Survival.boots","301");
+			ckits.add("Survival.name","&7Survival");
+			ckits.add("Survival.permission","kit.survival");
+			//opcional si se quiere poner un precio a los kits
+			ckits.add("Survival.value",100);
+			ckits.add("Survival.icon","GRASS");
+			ckits.add("Survival.description",Arrays.asList(
+					"Un azombroso kit para survival",
+					"Esto es una jnueva linea"));
+			ckits.add("Survival.items",Arrays.asList(
+					"DIAMOND_HELMET , 1",
+					"DIAMOND_CHESTPLATE , 1, DURABILITY:5",
+					"DIAMOND_LEGGINGS , 1",
+					"IRON_BOOTS , 1",
+					"LAVA_BUCKET , 2",
+					"STAINED_GLASS_PANE:15 ,32"));
+			//Explicacion
+			// "<material>|<data> , <cantida> , <encantamiento>|<nivel>"
 			
 		}
 	
