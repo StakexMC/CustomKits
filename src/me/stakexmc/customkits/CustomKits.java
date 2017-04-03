@@ -16,7 +16,7 @@ public class CustomKits extends JavaPlugin {
 		iniConfig();
 		log.line("--------------------------------");
 	}
-	
+	   
 	//iniciamos el archivo config
 		public void iniConfig(){
 			cconfig = new CoreConfig(intance,"config");
