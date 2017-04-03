@@ -2,6 +2,9 @@ package me.stakexmc.customkits;
 
 import java.util.logging.Level;
 
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
 public class CoreLog {
 private CustomKits plugin;
 	
@@ -24,4 +27,8 @@ private CustomKits plugin;
 	  {
 		plugin.getServer().getLogger().log(Level.SEVERE, info);
 	  }
+	
+	public void Message(Player p, String Message){
+		p.sendMessage(CoreUtils.rColor("&b[&7&lCustomKits&b]&7 " + Message));
+	}
 }

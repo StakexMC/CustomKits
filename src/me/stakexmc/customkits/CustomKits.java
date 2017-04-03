@@ -2,6 +2,9 @@ package me.stakexmc.customkits;
 
 import java.util.Arrays;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class CustomKits extends JavaPlugin {
@@ -14,6 +17,7 @@ public class CustomKits extends JavaPlugin {
 	
 	public void onEnable(){
 		this.log = new CoreLog(this);
+		intance = this;
 		log.line("--------------------------------");
 		log.info("Hola bebe");
 		log.info("Pruebaaaaaaaaaaaa");
@@ -69,12 +73,12 @@ public class CustomKits extends JavaPlugin {
 					"Un azombroso kit para survival",
 					"Esto es una jnueva linea"));
 			ckits.add("Survival.items",Arrays.asList(
-					"DIAMOND_HELMET , 1",
-					"DIAMOND_CHESTPLATE , 1, DURABILITY:5",
-					"DIAMOND_LEGGINGS , 1",
-					"IRON_BOOTS , 1",
-					"LAVA_BUCKET , 2",
-					"STAINED_GLASS_PANE:15 ,32"));
+					"DIAMOND_HELMET: 1",
+					"DIAMOND_CHESTPLATE: 1, DURABILITY:5",
+					"DIAMOND_LEGGINGS: 1",
+					"IRON_BOOTS: 1",
+					"LAVA_BUCKET: 1",
+					"STAINED_GLASS_PANE: 15 ,32"));
 			//Explicacion
 			// "<material>|<data> , <cantida> , <encantamiento>|<nivel>"
 			
@@ -83,4 +87,23 @@ public class CustomKits extends JavaPlugin {
 	public CoreLog getLog(){
 		return this.log;
 	}
+	
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String Stringlabel, String [] args){
+    	if(!(sender instanceof Player)){
+    		log.info("&aCommand don't available in Console");
+			return true;
+		}
+    	Player p = (Player)sender;	
+    	if(cmd.getName().equalsIgnoreCase("CustomKits")){
+    		if(args.length >= 0){
+    			log.Message(p, "Command dont exist");
+    		}else{
+    			
+    		}
+    		
+    	}
+    	return true;
+	}
+	
 }
