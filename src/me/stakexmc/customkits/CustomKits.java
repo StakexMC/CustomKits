@@ -13,4 +13,8 @@ public class CustomKits extends JavaPlugin {
 		log.info("Pruebaaaaaaaaaaaa");
 		log.line("--------------------------------");
 	}
+	
+	public CoreLog getLog(){
+		return this.log;
+	}
 }
