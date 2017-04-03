@@ -14,6 +14,7 @@ public class CustomKits extends JavaPlugin {
 	//para cada archivo una nueva clase CoreConfig prro
 	public CoreConfig ckits;
 	public static CustomKits intance;
+	public CoreConfig cmessages;
 	
 	public void onEnable(){
 		this.log = new CoreLog(this);
@@ -45,6 +46,16 @@ public class CustomKits extends JavaPlugin {
 			}else{
 				configKits();
 				ckits.create();
+			}
+			
+		}public void iniMessages(){
+			cmessages = new CoreConfig(intance,"Messages");
+			if (cmessages.Exists()){
+				configKits();
+				ckits.load();
+			}else{
+				configKits();
+				cmessages.create();
 			}
 			
 		}
@@ -81,7 +92,13 @@ public class CustomKits extends JavaPlugin {
 					"STAINED_GLASS_PANE: 15 ,32"));
 			//Explicacion
 			// "<material>|<data> , <cantida> , <encantamiento>|<nivel>"
+			ckits.add("menu.close", "BARRIER");
 			
+		}
+		//Default para archivo Messages
+		public void DefaultMessages(){
+			cmessages.add("close", "&4Close Inventory");
+			cmessages.add("close.lore", Arrays.asList("Click for Closing the Inventory"));
 		}
 	
 	public CoreLog getLog(){
@@ -99,7 +116,7 @@ public class CustomKits extends JavaPlugin {
     		if(args.length >= 0){
     			log.Message(p, "Command dont exist");
     		}else{
-    			
+    			Menu.openMenu(p);
     		}
     		
     	}

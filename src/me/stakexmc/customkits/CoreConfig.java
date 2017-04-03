@@ -99,6 +99,7 @@ public class CoreConfig {
 	
 	public String getString(String path){
 		return config.getString(path);
+		
 	}
 	
 	public int getInt(String path){

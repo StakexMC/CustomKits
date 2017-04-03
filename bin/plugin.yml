@@ -3,3 +3,7 @@ version: 1.0.0
 main: me.stakexmc.customkits.CustomKits
 author: StakexMC
 description: Crea Kits personalizados para tu servidor
+command:
+	kit:
+		description: main command for plugin
+		usage: /<command>
