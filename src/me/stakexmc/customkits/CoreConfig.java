@@ -133,9 +133,10 @@ public class CoreConfig {
 		 config.set(path, value);
 	}
 	
-	public Set<String> keyset(){
+	public Set<String> getKeys(){
 		 return config.getKeys(false);
 	}
+	
 	
 	public boolean contains(String path){
 		 return config.contains(path);

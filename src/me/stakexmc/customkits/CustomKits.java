@@ -1,11 +1,23 @@
 package me.stakexmc.customkits;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+
+
+
+
+
+
 
 public class CustomKits extends JavaPlugin {
 	
@@ -16,14 +28,17 @@ public class CustomKits extends JavaPlugin {
 	public static CustomKits intance;
 	public CoreConfig cmessages;
 	
+	public  List<Kit> kits = new ArrayList<Kit>();
+	
 	public void onEnable(){
 		this.log = new CoreLog(this);
 		intance = this;
 		log.line("--------------------------------");
-		log.info("Hola bebe");
-		log.info("Pruebaaaaaaaaaaaa");
+		log.info("CustomKits by PedroJM96 and StakexMC");
+		log.info("&7Loading configuration...");
 		iniConfig();
 		iniKits();
+		loadKits();
 		log.line("--------------------------------");
 	}
 	   
@@ -84,12 +99,12 @@ public class CustomKits extends JavaPlugin {
 					"Un azombroso kit para survival",
 					"Esto es una jnueva linea"));
 			ckits.add("Survival.items",Arrays.asList(
-					"DIAMOND_HELMET: 1",
-					"DIAMOND_CHESTPLATE: 1, DURABILITY:5",
-					"DIAMOND_LEGGINGS: 1",
-					"IRON_BOOTS: 1",
-					"LAVA_BUCKET: 1",
-					"STAINED_GLASS_PANE: 15 ,32"));
+					"material:DIAMOND_HELMET, name:Casco de Lujo",
+					"material:DIAMOND_CHESTPLATE, name:Traje de Lujo ,enchantment:DURABILITY:5",
+					"material:DIAMOND_LEGGINGS",
+					"material:IRON_BOOTS",
+					"material:LAVA_BUCKET",
+					"material:STAINED_GLASS_PANE,data:15,amount:32"));
 			//Explicacion
 			// "<material>|<data> , <cantida> , <encantamiento>|<nivel>"
 			ckits.add("menu.close", "BARRIER");
@@ -106,6 +121,42 @@ public class CustomKits extends JavaPlugin {
 	}
 	
 	
+	@SuppressWarnings("deprecation")
+	public void loadKits(){
+		
+		Set<String> key = ckits.getKeys();
+		for (String nodo : key){
+			ConfigurationSection cskit = ckits.getConfigurationSection(nodo);
+			if (!cskit.isSet("name"))
+		      {
+			      log.info("The kit " + nodo + " has no name!");
+		      }
+		      else if (!cskit.isSet("icon"))
+		      {
+		    	  log.info("The kit " + nodo + " has no icon!");
+		      }
+		      else if ((cskit.getInt("id") == 0) || (Material.getMaterial(cskit.getInt("id")) == null))
+		      {
+		    	  log.info("The kit " + nodo + " has an invalid item icon: " + cskit.getInt("id") + ".");
+		      }else{
+		    	  Kit kit = new Kit(this.log,Material.getMaterial(cskit.getString("icon")));
+		    	  kit.setName(cskit.getString("name"));
+		    	  kit.setPermission(cskit.getString("permission"));
+		    	  if ((cskit.isSet("description")) && (cskit.isList("description"))) {
+			        	List<String> v = cskit.getStringList("description");
+			        	kit.setdescription(v);
+			      }
+		    	  if ((cskit.isSet("items")) && (cskit.isList("items"))) {
+			        	List<String> citem = cskit.getStringList("items");
+			        	for(String item : citem){
+			        		kit.addItem(item);
+			        	}
+			      }
+		    	  this.kits.add(kit);
+		      }
+		}
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String Stringlabel, String [] args){
     	if(!(sender instanceof Player)){
     		log.info("&aCommand don't available in Console");
@@ -116,7 +167,7 @@ public class CustomKits extends JavaPlugin {
     		if(args.length >= 0){
     			log.Message(p, "Command dont exist");
     		}else{
-    			Menu.openMenu(p);
+    			Menu.openMenu(this,p);
     		}
     		
     	}

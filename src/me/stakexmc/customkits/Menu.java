@@ -9,16 +9,22 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Menu {
 	
-	public static void openMenu(Player p){
-		ItemStack close= new ItemStack(Material.getMaterial(CustomKits.intance.ckits.getString("close")));
+	public static void openMenu(CustomKits plugin,Player p){
+		ItemStack close= new ItemStack(Material.getMaterial(plugin.ckits.getString("close")));
 		ItemMeta closemeta = close.getItemMeta();
-		closemeta.setDisplayName(CustomKits.intance.cmessages.getString("close"));
+		closemeta.setDisplayName(plugin.cmessages.getString("close"));
 		close.setItemMeta(closemeta);
 		
-		String title = CoreUtils.rColor(CustomKits.intance.cmessages.getString("Menu"));
+		String title = CoreUtils.rColor(plugin.cmessages.getString("Menu"));
 		Inventory menu = Bukkit.createInventory(null, 54 , title);
+		for(Kit kit : plugin.kits){
+			menu.addItem(kit.getIcon());
+		}
+		
 		menu.setItem(40, close);
 
 		p.openInventory(menu);
 	}
+	
+	
 }
