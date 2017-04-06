@@ -12,7 +12,7 @@ private CustomKits plugin;
 		
 		this.plugin = p; 
 		
-	}
+	} 
 	
 	public void info(String info)
 	  {

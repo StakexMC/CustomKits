@@ -21,7 +21,7 @@ public class CoreUtils {
 		}
 		
 	}
-	
+	 
 	public static int toint(String s){
 		try{
 			int i = Integer.parseInt(s);

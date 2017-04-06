@@ -25,7 +25,7 @@ public class MenuListener implements Listener {
 		      e.setCancelled(true);
 		    }
 	}
-	
+	 
 	@EventHandler
 	public void MenuClick(InventoryClickEvent e){
 		if (e.getInventory().getName().equals(CoreUtils.rColor(plugin.cmessages.getString("Menu")))){

@@ -19,7 +19,7 @@ public class Menu {
 		Inventory menu = Bukkit.createInventory(null, 54 , title);
 		for(Kit kit : plugin.kits){
 			menu.addItem(kit.getIcon());
-		}
+		} 
 		
 		menu.setItem(40, close);
 

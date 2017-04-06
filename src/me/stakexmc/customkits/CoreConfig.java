@@ -23,7 +23,7 @@ public class CoreConfig {
 		s = configfile;
 		
 	}
-	
+	 
 	public boolean Exists(){
 		if(file.exists()){
 			return true;
