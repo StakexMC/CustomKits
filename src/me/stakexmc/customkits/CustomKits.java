@@ -106,7 +106,7 @@ public class CustomKits extends JavaPlugin {
 					"Un azombroso kit para survival",
 					"Esto es una jnueva linea"));
 			ckits.add("Survival.items",Arrays.asList(
-					"material:DIAMOND_HELMET, name:&6Casco de Lujo,lore:&6Esto es un lore prro|&by esto es otra linea",
+					"material:DIAMOND_HELMET, name:&6Casco de Lujo,lore:&6Esto es un lore prro#&by esto es otra linea",
 					"material:DIAMOND_CHESTPLATE, name:%4Traje de Lujo ,enchantment:DURABILITY:5",
 					"material:DIAMOND_LEGGINGS",
 					"material:IRON_BOOTS",

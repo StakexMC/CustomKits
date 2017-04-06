@@ -100,7 +100,7 @@ public class Kit {
 			String paramLore= null;
 			if(parametros.length > 1){
 				for(int i=0 ; i<parametros.length ; i++){
-					if(parametros[i].startsWith("material:")){
+					if(parametros[i].trim().startsWith("material:")){
 						
 						String parametro = parametros[i].substring(9);
 						if(Material.getMaterial(parametro.trim()) == null){
@@ -109,22 +109,23 @@ public class Kit {
 						}
 						paramMaterial = Material.getMaterial(parametro.trim());
 					}
-					if(parametros[i].startsWith("data:")){
+					if(parametros[i].trim().startsWith("data:")){
 						
 						String parametro = parametros[i].substring(5);
 						paramData = Integer.valueOf(parametro.trim());
 					}
-					if(parametros[i].startsWith("amount:")){
+					if(parametros[i].trim().startsWith("amount:")){
 						
 						String parametro = parametros[i].substring(7);
 						paramAmount = Integer.valueOf(parametro.trim());
 					}
-					if(parametros[i].startsWith("name:")){
-						String[] dele = parametros[i].split(":");
+					if(parametros[i].trim().startsWith("name:")){
+						log.info("nombreeeee");
 						String parametro = parametros[i].substring(5);
 						paramName = parametro.trim();
+						log.info("nombreeeee: "+paramName);
 					}
-					if(parametros[i].startsWith("lore:")){
+					if(parametros[i].trim().startsWith("lore:")){
 						
 						String parametro = parametros[i].substring(5);
 						paramLore = parametro.trim();
@@ -140,14 +141,14 @@ public class Kit {
 					im.setDisplayName(CoreUtils.rColor(paramName));
 				}
 				if(paramLore!=null){
-					String[] loreArray = paramLore.split("|");
+					String[] loreArray = paramLore.split("#");
 					List<String> loreLits = Arrays.asList(loreArray);
 					im.setLore(CoreUtils.rColorList(loreLits));
 				}
 				item.setItemMeta(im);
 				items.add(item);
 			}else{
-				if(parametros[0].startsWith("material:")){
+				if(parametros[0].trim().startsWith("material:")){
 					
 					String parametro = parametros[0].substring(9);
 					if(Material.getMaterial(parametro.trim()) == null){
@@ -165,7 +166,7 @@ public class Kit {
 		}else{
 			//si no tiene comas entonces no tiene parametros como nombre lore encantamiento lo cual indica que solo posee el materia la cantida y posoblemente la data
 			Material paramMaterial = null;
-			if(citem.startsWith("material:")){
+			if(citem.trim().startsWith("material:")){
 				
 				String parametro = citem.substring(9);
 				if(Material.getMaterial(parametro.trim()) == null){
