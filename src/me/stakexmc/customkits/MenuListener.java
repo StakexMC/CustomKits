@@ -21,24 +21,30 @@ public class MenuListener implements Listener {
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent e)
 	  {
-		if (e.getInventory().getName().equals(CoreUtils.rColor(plugin.cmessages.getString("Menu")))){
+		if (e.getInventory().getName().equals(CoreUtils.rColor(plugin.cmessages.getString("menu-title")))){
 		      e.setCancelled(true);
 		    }
 	}
 	 
 	@EventHandler
 	public void MenuClick(InventoryClickEvent e){
-		if (e.getInventory().getName().equals(CoreUtils.rColor(plugin.cmessages.getString("Menu")))){
+		if (e.getInventory().getName().equals(CoreUtils.rColor(plugin.cmessages.getString("menu-title")))){
 			ItemStack itemInHand = e.getCurrentItem();
 			Player p = (Player) e.getWhoClicked();
 			for(Kit kit : plugin.kits){
+				plugin.getLog().info("for de kit");
 				if(kit.like(itemInHand)){
+					plugin.getLog().info("igual");
 					for(ItemStack i: kit.getItems()){
 						p.getInventory().addItem(i);
+						plugin.getLog().info("se da un item");
 					}
 					p.closeInventory();
+					break;
+					
 				}
 			} 
+			
 		}
 	}
 	

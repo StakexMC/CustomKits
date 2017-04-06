@@ -27,6 +27,10 @@ public class Kit {
 		this.name = name;
 	}
 	
+	public String getName(){
+		return this.name;
+	}
+	
 	public ItemStack getIcon(){
 		ItemStack item = new ItemStack(this.icon,1,(short)0);
 		ItemMeta im = item.getItemMeta();
@@ -60,7 +64,7 @@ public class Kit {
 		      if (!y.hasDisplayName()) {
 		        return false;
 		      }
-		      if (!y.getDisplayName().equals(this.name)) {
+		      if (!y.getDisplayName().equals(CoreUtils.rColor(this.name) )) {
 		        return false;
 		      }
 		    }
@@ -97,37 +101,37 @@ public class Kit {
 			if(parametros.length > 1){
 				for(int i=0 ; i<parametros.length ; i++){
 					if(parametros[i].startsWith("material:")){
-						String[] dele = parametros[i].split(":");
-						String parametro = parametros[i].substring(dele[0].length());
+						
+						String parametro = parametros[i].substring(9);
 						if(Material.getMaterial(parametro.trim()) == null){
-							log.info("El material no es valido consulte con un administrador");
+							log.info("El material no es valido consulte con un administrador 1");
 							return;
 						}
 						paramMaterial = Material.getMaterial(parametro.trim());
 					}
 					if(parametros[i].startsWith("data:")){
-						String[] dele = parametros[i].split(":");
-						String parametro = parametros[i].substring(dele[0].length());
+						
+						String parametro = parametros[i].substring(5);
 						paramData = Integer.valueOf(parametro.trim());
 					}
 					if(parametros[i].startsWith("amount:")){
-						String[] dele = parametros[i].split(":");
-						String parametro = parametros[i].substring(dele[0].length());
+						
+						String parametro = parametros[i].substring(7);
 						paramAmount = Integer.valueOf(parametro.trim());
 					}
 					if(parametros[i].startsWith("name:")){
 						String[] dele = parametros[i].split(":");
-						String parametro = parametros[i].substring(dele[0].length());
+						String parametro = parametros[i].substring(5);
 						paramName = parametro.trim();
 					}
 					if(parametros[i].startsWith("lore:")){
-						String[] dele = parametros[i].split(":");
-						String parametro = parametros[i].substring(dele[0].length());
+						
+						String parametro = parametros[i].substring(5);
 						paramLore = parametro.trim();
 					}
 				}
 				if(paramMaterial == null){
-					log.info("Debe especificar el material consulte con un administrador");
+					log.info("Debe especificar el material consulte con un administrador 2");
 					return;
 				}
 				ItemStack item = new ItemStack(paramMaterial,paramAmount,(short)paramData);
@@ -144,17 +148,17 @@ public class Kit {
 				items.add(item);
 			}else{
 				if(parametros[0].startsWith("material:")){
-					String[] dele = parametros[0].split(":");
-					String parametro = parametros[0].substring(dele[0].length());
+					
+					String parametro = parametros[0].substring(9);
 					if(Material.getMaterial(parametro.trim()) == null){
-						log.info("El material no es valido consulte con un administrador");
+						log.info("El material no es valido consulte con un administrador 3");
 						return;
 					}
 					paramMaterial = Material.getMaterial(parametro.trim());
 					ItemStack item = new ItemStack(paramMaterial,paramAmount,(short)paramData);
 					items.add(item);
 				}else{
-					log.info("Debe especificar el material consulte con un administrador");
+					log.info("Debe especificar el material consulte con un administrador 4");
 					return;
 				}
 			}
@@ -162,17 +166,17 @@ public class Kit {
 			//si no tiene comas entonces no tiene parametros como nombre lore encantamiento lo cual indica que solo posee el materia la cantida y posoblemente la data
 			Material paramMaterial = null;
 			if(citem.startsWith("material:")){
-				String[] dele = citem.split(":");
-				String parametro = citem.substring(dele[0].length());
+				
+				String parametro = citem.substring(9);
 				if(Material.getMaterial(parametro.trim()) == null){
-					log.info("El material no es valido consulte con un administrador");
+					log.info("El material no es valido consulte con un administrador 5");
 					return;
 				}
 				paramMaterial = Material.getMaterial(parametro.trim());
 				ItemStack item = new ItemStack(paramMaterial,1,(short)0);
 				items.add(item);
 			}else{
-				log.info("Debe especificar el material consulte con un administrador");
+				log.info("Debe especificar el material consulte con un administrador 6");
 				return;
 			}
 		}

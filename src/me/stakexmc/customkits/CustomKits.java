@@ -42,6 +42,7 @@ public class CustomKits extends JavaPlugin {
 		iniConfig();
 		iniKits();
 		loadKits();
+		iniMessages();
 		PluginManager pm = getServer().getPluginManager();
 		MenuListener evenlistener = new MenuListener(this);
 		pm.registerEvents(evenlistener, this);
@@ -72,10 +73,10 @@ public class CustomKits extends JavaPlugin {
 		}public void iniMessages(){
 			cmessages = new CoreConfig(intance,"Messages");
 			if (cmessages.Exists()){
-				configKits();
-				ckits.load();
+				DefaultMessages();
+				cmessages.load();
 			}else{
-				configKits();
+				DefaultMessages();
 				cmessages.create();
 			}
 			
@@ -105,20 +106,22 @@ public class CustomKits extends JavaPlugin {
 					"Un azombroso kit para survival",
 					"Esto es una jnueva linea"));
 			ckits.add("Survival.items",Arrays.asList(
-					"material:DIAMOND_HELMET, name:Casco de Lujo",
-					"material:DIAMOND_CHESTPLATE, name:Traje de Lujo ,enchantment:DURABILITY:5",
+					"material:DIAMOND_HELMET, name:&6Casco de Lujo,lore:&6Esto es un lore prro|&by esto es otra linea",
+					"material:DIAMOND_CHESTPLATE, name:%4Traje de Lujo ,enchantment:DURABILITY:5",
 					"material:DIAMOND_LEGGINGS",
 					"material:IRON_BOOTS",
 					"material:LAVA_BUCKET",
 					"material:STAINED_GLASS_PANE,data:15,amount:32"));
 			//Explicacion
 			// "<material>|<data> , <cantida> , <encantamiento>|<nivel>"
-			ckits.add("menu.close", "BARRIER");
+			ckits.add("menu-close", "BARRIER");
 			
 		}
 		//Default para archivo Messages
 		public void DefaultMessages(){
-			cmessages.add("close", "&4Close Inventory");
+			cmessages.add("menu-close", "&4Close Inventory");
+			cmessages.add("menu-title", "&4Kits");
+			
 			cmessages.add("close.lore", Arrays.asList("Click for Closing the Inventory"));
 		}
 	
@@ -132,34 +135,43 @@ public class CustomKits extends JavaPlugin {
 		
 		Set<String> key = ckits.getKeys();
 		for (String nodo : key){
-			ConfigurationSection cskit = ckits.getConfigurationSection(nodo);
-			if (!cskit.isSet("name"))
-		      {
-			      log.info("The kit " + nodo + " has no name!");
-		      }
-		      else if (!cskit.isSet("icon"))
-		      {
-		    	  log.info("The kit " + nodo + " has no icon!");
-		      }
-		      else if ((cskit.getInt("id") == 0) || (Material.getMaterial(cskit.getInt("id")) == null))
-		      {
-		    	  log.info("The kit " + nodo + " has an invalid item icon: " + cskit.getInt("id") + ".");
-		      }else{
-		    	  Kit kit = new Kit(this.log,Material.getMaterial(cskit.getString("icon")));
-		    	  kit.setName(cskit.getString("name"));
-		    	  kit.setPermission(cskit.getString("permission"));
-		    	  if ((cskit.isSet("description")) && (cskit.isList("description"))) {
-			        	List<String> v = cskit.getStringList("description");
-			        	kit.setdescription(v);
-			      }
-		    	  if ((cskit.isSet("items")) && (cskit.isList("items"))) {
-			        	List<String> citem = cskit.getStringList("items");
-			        	for(String item : citem){
-			        		kit.addItem(item);
-			        	}
-			      }
-		    	  this.kits.add(kit);
-		      }
+			
+			if(nodo != "menu-close"){
+				ConfigurationSection cskit = ckits.getConfigurationSection(nodo);
+				if(cskit!=null){
+					if (!cskit.isSet("name"))
+				      {
+					      log.info("The kit " + nodo + " has no name!");
+				      }
+				      else if (!cskit.isSet("icon"))
+				      {
+				    	  log.info("The kit " + nodo + " has no icon!");
+				      }
+				      else if (Material.getMaterial(cskit.getInt("icon")) == null)
+				      {
+				    	  log.info("The kit " + nodo + " has an invalid item icon: " + cskit.getInt("icon") + ".");
+				      }else{
+				    	  Kit kit = new Kit(this.log,Material.getMaterial(cskit.getString("icon")));
+				    	  kit.setName(cskit.getString("name"));
+				    	  kit.setPermission(cskit.getString("permission"));
+				    	  if ((cskit.isSet("description")) && (cskit.isList("description"))) {
+					        	List<String> v = cskit.getStringList("description");
+					        	kit.setdescription(v);
+					      }
+				    	  if ((cskit.isSet("items")) && (cskit.isList("items"))) {
+					        	List<String> citem = cskit.getStringList("items");
+					        	for(String item : citem){
+					        		kit.addItem(item);
+					        		
+					        	}
+					      }
+				    	  this.kits.add(kit);
+				    	  log.info("kit añadido");
+				      }
+				}
+				
+			} 
+			
 		}
 	}
 	
