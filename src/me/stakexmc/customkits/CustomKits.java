@@ -169,7 +169,7 @@ public class CustomKits extends JavaPlugin {
 			return true;
 		}
     	Player p = (Player)sender;	
-    	if(cmd.getName().equalsIgnoreCase("CustomKits")){
+    	if(cmd.getName().equalsIgnoreCase("kits")){
     		if(args.length >= 0){
     			log.Message(p, "Command dont exist");
     		}else{
