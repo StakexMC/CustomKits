@@ -10,7 +10,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+
 
 
 
@@ -39,6 +42,9 @@ public class CustomKits extends JavaPlugin {
 		iniConfig();
 		iniKits();
 		loadKits();
+		PluginManager pm = getServer().getPluginManager();
+		MenuListener evenlistener = new MenuListener(this);
+		pm.registerEvents(evenlistener, this);
 		log.line("--------------------------------");
 	}
 	   

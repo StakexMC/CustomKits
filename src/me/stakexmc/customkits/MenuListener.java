@@ -38,7 +38,7 @@ public class MenuListener implements Listener {
 					}
 					p.closeInventory();
 				}
-			}
+			} 
 		}
 	}
 	

@@ -25,6 +25,6 @@ public class Menu {
 
 		p.openInventory(menu);
 	}
-	
+	 
 	
 }

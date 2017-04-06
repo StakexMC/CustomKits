@@ -29,7 +29,7 @@ public class CoreConfig {
 			return true;
 		}else{
 			return false;
-		}
+		} 
 	}
 	
 	public void create(){

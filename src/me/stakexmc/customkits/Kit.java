@@ -84,7 +84,7 @@ public class Kit {
 		if(citem == null || citem.length() == 0){
 			log.info("Item no valid contact an administrator");
 			return;
-		}
+		} 
 		//se comprueba si el item tiene definidos parametros como nombre lore o encantamiento
 		if(citem.contains(",")){
 			//separamos cada uno de los parametros justo donde esta la coma
