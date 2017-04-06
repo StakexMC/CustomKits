@@ -102,7 +102,7 @@ public class Kit {
 				for(int i=0 ; i<parametros.length ; i++){
 					if(parametros[i].trim().startsWith("material:")){
 						
-						String parametro = parametros[i].substring(9);
+						String parametro = parametros[i].trim().substring(9);
 						if(Material.getMaterial(parametro.trim()) == null){
 							log.info("El material no es valido consulte con un administrador 1");
 							return;
@@ -111,23 +111,23 @@ public class Kit {
 					}
 					if(parametros[i].trim().startsWith("data:")){
 						
-						String parametro = parametros[i].substring(5);
+						String parametro = parametros[i].trim().substring(5);
 						paramData = Integer.valueOf(parametro.trim());
 					}
 					if(parametros[i].trim().startsWith("amount:")){
 						
-						String parametro = parametros[i].substring(7);
+						String parametro = parametros[i].trim().substring(7);
 						paramAmount = Integer.valueOf(parametro.trim());
 					}
 					if(parametros[i].trim().startsWith("name:")){
 						log.info("nombreeeee");
-						String parametro = parametros[i].substring(5);
+						String parametro = parametros[i].trim().substring(5);
 						paramName = parametro.trim();
 						log.info("nombreeeee: "+paramName);
 					}
 					if(parametros[i].trim().startsWith("lore:")){
 						
-						String parametro = parametros[i].substring(5);
+						String parametro = parametros[i].trim().substring(5);
 						paramLore = parametro.trim();
 					}
 				}
@@ -150,7 +150,7 @@ public class Kit {
 			}else{
 				if(parametros[0].trim().startsWith("material:")){
 					
-					String parametro = parametros[0].substring(9);
+					String parametro = parametros[0].trim().substring(9);
 					if(Material.getMaterial(parametro.trim()) == null){
 						log.info("El material no es valido consulte con un administrador 3");
 						return;
@@ -168,7 +168,7 @@ public class Kit {
 			Material paramMaterial = null;
 			if(citem.trim().startsWith("material:")){
 				
-				String parametro = citem.substring(9);
+				String parametro = citem.trim().substring(9);
 				if(Material.getMaterial(parametro.trim()) == null){
 					log.info("El material no es valido consulte con un administrador 5");
 					return;
