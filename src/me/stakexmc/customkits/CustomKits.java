@@ -12,14 +12,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-
-
-
-
-
-
-
  
 
 public class CustomKits extends JavaPlugin {
@@ -36,17 +28,18 @@ public class CustomKits extends JavaPlugin {
 	public void onEnable(){
 		this.log = new CoreLog(this);
 		intance = this;
-		log.line("--------------------------------");
+		log.line("======================================================");
 		log.info("CustomKits by PedroJM96 and StakexMC");
 		log.info("&7Loading configuration...");
 		iniConfig();
 		iniKits();
 		loadKits();
 		iniMessages();
+		// tienes una flojera de escribir codigo nive
 		PluginManager pm = getServer().getPluginManager();
 		MenuListener evenlistener = new MenuListener(this);
 		pm.registerEvents(evenlistener, this);
-		log.line("--------------------------------");
+		log.line("======================================================");
 	}
 	   
 	//iniciamos el archivo config
@@ -106,10 +99,10 @@ public class CustomKits extends JavaPlugin {
 					"Un azombroso kit para survival",
 					"Esto es una jnueva linea"));
 			ckits.add("Survival.items",Arrays.asList(
-					"material:DIAMOND_HELMET, name:&6Casco de Lujo,lore:&6Esto es un lore prro#&by esto es otra linea",
-					"material:DIAMOND_CHESTPLATE, name:%4Traje de Lujo ,enchantment:DURABILITY:5",
-					"material:DIAMOND_LEGGINGS",
-					"material:IRON_BOOTS",
+					"material:DIAMOND_HELMET, name:&bHelmet Deluxe, lore:&6Esto es un lore prro# &by esto es otra linea",
+					"material:DIAMOND_CHESTPLATE, name:&bChesplate Deluxe, enchantment:DURABILITY:5",
+					"material:DIAMOND_LEGGINGS, name:&bLeggings Deluxe",
+					"material:IRON_BOOTS, name:&bBoots Deluxe",
 					"material:LAVA_BUCKET",
 					"material:STAINED_GLASS_PANE,data:15,amount:32"));
 			//Explicacion
@@ -166,7 +159,7 @@ public class CustomKits extends JavaPlugin {
 					        	}
 					      }
 				    	  this.kits.add(kit);
-				    	  log.info("kit añadido");
+				    	  log.info("Kit Create: "+cskit.getString("name"));
 				      }
 				}
 				

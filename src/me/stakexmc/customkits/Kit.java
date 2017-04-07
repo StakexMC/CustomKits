@@ -120,10 +120,9 @@ public class Kit {
 						paramAmount = Integer.valueOf(parametro.trim());
 					}
 					if(parametros[i].trim().startsWith("name:")){
-						log.info("nombreeeee");
 						String parametro = parametros[i].trim().substring(5);
 						paramName = parametro.trim();
-						log.info("nombreeeee: "+paramName);
+						log.info("Item name: "+paramName);
 					}
 					if(parametros[i].trim().startsWith("lore:")){
 						
